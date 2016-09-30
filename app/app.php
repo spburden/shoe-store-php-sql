@@ -80,6 +80,11 @@
         return $app->redirect($app['url_generator']->generate('store', array('id' => $id)));
     });
 
+    $app->post("/store/{id}/delete_brands", function($id) use ($app) {
+        $store = Store::find($id);
+        $store->deleteBrands();
+        return $app->redirect($app['url_generator']->generate('store', array('id' => $id)));
+    });
 
     return $app;
 ?>
