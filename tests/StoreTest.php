@@ -78,10 +78,10 @@
 
             //Act
             $test_store->save();
-            $output = Store::getAll()[0];
+            $output = Store::getAll();
 
             //Assert
-            $this->assertEquals($test_store, $output);
+            $this->assertEquals([$test_store], $output);
         }
 
         function test_find()
@@ -113,6 +113,26 @@
             //Assert
             $this->assertEquals($edit_name, $output);
         }
+
+        function test_delete()
+        {
+            //Arrange
+            $name1 = "Foot Locker";
+            $test_store1 = new Store($name1);
+            $test_store1->save();
+
+            $name2 = "Foot Locker";
+            $test_store2 = new Store($name2);
+            $test_store2->save();
+
+            //Act
+            $test_store1->delete();
+            $output = Store::getAll();
+
+            //Assert
+            $this->assertEquals([$test_store2], $output);
+        }
+
 
 
     }
