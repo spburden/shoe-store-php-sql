@@ -74,8 +74,7 @@
         {
             //Arrange
             $name = "Foot Locker";
-            $id = 1;
-            $test_store = new Store($name, $id);
+            $test_store = new Store($name);
 
 
             //Act
@@ -86,7 +85,20 @@
             $this->assertEquals($test_store, $output);
         }
 
-        
+        function test_find()
+        {
+            //Arrange
+            $name = "Foot Locker";
+            $test_store = new Store($name);
+            $test_store->save();
+
+            //Act
+            $output = Store::find($test_store->getId());
+
+            //Assert
+            $this->assertEquals($test_store, $output);
+        }
+
 
     }
 ?>
