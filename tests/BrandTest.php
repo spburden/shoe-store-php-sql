@@ -201,8 +201,28 @@
             $this->assertEquals([$test_store1], $output);
         }
 
+        function test_notInTheseStores()
+        {
+            //Arrange
+            $store_name1 = "Foot Locker";
+            $test_store1 = new Store($store_name1);
+            $test_store1->save();
 
+            $store_name2 = "Big 5";
+            $test_store2 = new Store($store_name2);
+            $test_store2->save();
 
+            $brand_name = "Nike";
+            $test_brand = new Brand($brand_name);
+            $test_brand->save();
 
+            $test_brand->addStore($test_store1);
+
+            //Act
+            $output = $test_brand->notInTheseStores();
+
+            //Assert
+            $this->assertEquals([$test_store2], $output);
+        }
     }
 ?>

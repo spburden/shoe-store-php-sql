@@ -115,8 +115,7 @@
                FROM brands
                LEFT OUTER JOIN stores_brands
                ON (brands.id = stores_brands.brand_id)
-               WHERE stores_brands.brand_id IS NULL
-                ;");
+               WHERE stores_brands.brand_id IS NULL;");
            $brands = array();
            foreach($returned_brands as $brand) {
                $id = $brand['id'];
