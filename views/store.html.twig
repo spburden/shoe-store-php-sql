@@ -18,12 +18,12 @@
                     {% endif %}
                 </div>
                 <div class="col-sm-4">
-                    {% if all_brands_not_carried %}
+                    {% if brands_not_carried %}
                         <div class="form-group">
                             <form class="form-inline" action="/store/{{ store.getId }}/add_brand" method="post">
                                 <h5>Add a new Brand to Store</h5>
                                 <select name="brand_id" class="form-control">
-                                    {% for brand in all_brands_not_carried %}
+                                    {% for brand in brands_not_carried %}
                                         <option value="{{ brand.getId }}">{{ brand.getName }}</option>
                                     {% endfor %}
                                 </select>

@@ -109,22 +109,23 @@
           $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE brand_id = {$this->getId()} AND store_id = {$delete_store->getId()};");
        }
 
-       function notInTheseStores()
+       function notInStores()
        {
-           $returned_stores = $GLOBALS['DB']->query("SELECT stores.*
-               FROM stores
-               LEFT OUTER JOIN stores_brands
-               ON (stores.id = stores_brands.store_id)
-               WHERE stores_brands.store_id IS NULL;");
-           $stores = array();
-           foreach($returned_stores as $store) {
-               $id = $store['id'];
-               $name = $store['name'];
-               $new_store = new Store($name, $id);
-               array_push($stores, $new_store);
+           $all_stores = Store::getAll();
+           $brand_stores = $this->getStores();
+           $not_in_stores = array();
+           foreach($all_stores as $store) {
+               if(!in_array($store, $brand_stores))
+               {
+                   $name = $store->getName();
+                   $id = $store->getId();
+                   $new_brand = new Store($name, $id);
+                   array_push($not_in_stores, $new_brand);
+               }
            }
-           return $stores;
+           return $not_in_stores;
        }
+
 
     }
 ?>

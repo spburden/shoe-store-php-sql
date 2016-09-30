@@ -201,7 +201,7 @@
             $this->assertEquals([$test_store1], $output);
         }
 
-        function test_notInTheseStores()
+        function test_notInStores()
         {
             //Arrange
             $store_name1 = "Foot Locker";
@@ -219,7 +219,7 @@
             $test_brand->addStore($test_store1);
 
             //Act
-            $output = $test_brand->notInTheseStores();
+            $output = $test_brand->notInStores();
 
             //Assert
             $this->assertEquals([$test_store2], $output);

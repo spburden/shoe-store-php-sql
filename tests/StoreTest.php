@@ -203,7 +203,7 @@
             $this->assertEquals([$test_brand1], $output);
         }
 
-        function test_getBrandsNotCarried()
+        function test_brandsNotCarried()
         {
             //Arrange
             $store_name = "Foot Locker";
@@ -221,7 +221,7 @@
             $test_store->addBrand($test_brand2);
 
             //Act
-            $output = $test_store->getBrandsNotCarried();
+            $output = $test_store->brandsNotCarried();
 
             //Assert
             $this->assertEquals([$test_brand1], $output);
