@@ -60,9 +60,9 @@
 
     $app->get("/store/{id}", function($id) use ($app) {
         $store = Store::find($id);
-        $all_brands = Brand::getAll();
+        $all_brands_not_carried = $store->getBrandsNotCarried();
         $store_brands = $store->getBrands();
-        return $app['twig']->render('store.html.twig', array('all_brands' => $all_brands, 'store' => $store, 'store_brands' => $store_brands));
+        return $app['twig']->render('store.html.twig', array('all_brands_not_carried' => $all_brands_not_carried, 'store' => $store, 'store_brands' => $store_brands));
     })
     ->bind('store');
 
@@ -88,9 +88,9 @@
 
     $app->get("/brand/{id}", function($id) use ($app) {
         $brand = Brand::find($id);
-        $all_stores = Store::getAll();
+        $brand_not_in_stores = $brand->notInTheseStores();
         $brand_stores = $brand->getStores();
-        return $app['twig']->render('brand.html.twig', array('all_stores' => $all_stores, 'brand' => $brand, 'brand_stores' => $brand_stores));
+        return $app['twig']->render('brand.html.twig', array('brand_not_in_stores' => $brand_not_in_stores, 'brand' => $brand, 'brand_stores' => $brand_stores));
     })
     ->bind('brand');
 

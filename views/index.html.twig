@@ -2,16 +2,14 @@
 <html>
     <body>
         <div class="container">
-            <h1>Epic Shoe Store</h1>
+            <h1>Epic Shoe Store Directory</h1>
             <div class="row">
                 <div class="col-sm-6">
                     <h3>Brands:</h3>
                     {% if brands %}
-                        <h4>
-                            {% for brand in brands %}
-                                <a href="/brand/{{ brand.getId }}">{{ brand.getName }}</a>
-                            {% endfor %}
-                        </h4>
+                        {% for brand in brands %}
+                        <h4><a href="/brand/{{ brand.getId }}">{{ brand.getName }}</a></h4>
+                        {% endfor %}
                         <form class="" action="/delete_brands" method="post">
                             <button type="submit" class="btn btn-danger">Delete All</button>
                         </form>
@@ -27,17 +25,15 @@
                 <div class="col-sm-6">
                     <h3>Stores:</h3>
                     {% if stores %}
-                        <h4>
-                            {% for store in stores %}
-                                <a href="/store/{{ store.getId }}">{{ store.getName }}</a>
-                            {% endfor %}
-                        </h4>
+                        {% for store in stores %}
+                            <h4><a href="/store/{{ store.getId }}">{{ store.getName }}</a></h4>
+                        {% endfor %}
                         <form class="" action="/delete_stores" method="post">
                             <button type="submit" class="btn btn-danger">Delete All</button>
                         </form>
                     {% endif %}
                     <form class="form-inline" action="/add_store" method="post">
-                        <h5>Add a new Brand</h5>
+                        <h5>Add a new Store</h5>
                         <div class="form-group">
                             <input class="form-control" type="text" name="new_store" placeholder="Name" required>
                         </div>

@@ -25,7 +25,7 @@
             Store::deleteAll();
             Brand::deleteAll();
         }
-        
+
         function test_getId()
         {
             //Arrange
