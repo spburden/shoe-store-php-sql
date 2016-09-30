@@ -1,17 +1,18 @@
 # _Shoe Store with PHP and SQL_
 
-#### _An application for a shoe store. The owner should be able to add brands, and for each brand, add shoes who see that brand. The brands work independently, so each shoe only belongs to a single brand, September 30, 2016_
+#### _This is an application to list out local shoe stores and the brands of shoes that they carry. The user can update and delete a store's name. Also a user can add stores and brands, and be able to modify which stores carry a particular brand, September 30, 2016_
 
 #### By _**Stephen Burden**_
 
 ## Specifications
 | Behavior | Input Ex. | Output Ex. |
 | --- | --- | --- |
-| Takes Brand name, records it in database and displays on page  | "Nike"  |  "Nike" |
-| Update Brand name, updates name in database and updates on homepage  | "Adidas"  |  "Adidas" |
-| Select Brand's name and displays all Shoes on Brand page | "Adidas"  |  "Yezzies", "Jumps" |
-| Select Shoes's name displays Shoes's information  | "Yezzies"  |  "Yezzies" |
-| Update Shoes's name on Shoes page, updates name in database and posts update to Brand's page | "Air Jordan"  |  "Air Jordan" |
+| Create Store name, to display and record in database  | "Foot Locker"  |  "Foot Locker" |
+| Retrieve a Store's Brands | "Foot Locker"  | "Nike", "Adidas" |
+| Update Store name in database | "Big 5"  | "Big 5" |
+| Remove Store from database |  Remove "Big 5" from database containing "Big 5" & "Foot Locker" | "Foot Locker" |
+| Retrieve Stores that hold a certain Brand  | "Nike" |  "Foot Locker" |
+| Add Stores that carry a certain Brand | "Big 5" | "Big 5, Foot Locker" |
 
 ## Setup/Installation Requirements
 * _Clone the repository from the link below to your desktop_

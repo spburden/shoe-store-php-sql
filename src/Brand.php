@@ -4,7 +4,7 @@
         private $id;
         private $name;
 
-        function __construct ($id = null, $name)
+        function __construct ($id = null, $name, $brand_id)
         {
             $this->id = $id;
             $this->name = $name;
@@ -25,11 +25,12 @@
             return $this->name;
         }
 
+
         function save()
         {
             $name = $this->getName();
             $name = ucwords(strtolower($name));
-            $GLOBALS['DB']->exec("INSERT INTO brands (name) VALUES ('{$name}');");
+            $GLOBALS['DB']->exec("INSERT INTO brands (name, brand_id) VALUES ('{$name}', {$brand_id});");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
@@ -40,7 +41,8 @@
             foreach ($returned_brands as $brand) {
                 $id = $brand['id'];
                 $name = $brand['name'];
-                $new_brand = new Brand($id, $name);
+                $brand_id = $brand['brand_id'];
+                $new_brand = new Brand($id, $name, $brand_id);
                 array_push($brands, $new_brand);
             }
             return $brands;
@@ -48,7 +50,6 @@
 
         static function deleteAll()
         {
-            $GLOBALS['DB']->exec("DELETE FROM shoes;");
             $GLOBALS['DB']->exec("DELETE FROM brands;");
         }
 
@@ -74,28 +75,7 @@
 
         function deleteBrand()
         {
-            $GLOBALS['DB']->exec("DELETE FROM shoes WHERE brand_id = {$this->getId()};");
             $GLOBALS['DB']->exec("DELETE FROM brands WHERE id = {$this->getId()};");
         }
-
-        function findShoes()
-        {
-           $returned_shoes = $GLOBALS['DB']->query("SELECT * FROM shoes WHERE brand_id = {$this->getId()};");
-           $shoes = array();
-           foreach($returned_shoes as $shoe) {
-               $id = $shoe['id'];
-               $name = $shoe['name'];
-               $brand_id = $shoe['brand_id'];
-               $new_shoe = new Shoe($id, $name, $brand_id);
-               array_push($shoes, $new_shoe);
-           }
-           return $shoes;
-       }
-
-       function deleteShoes()
-       {
-          $returned_shoes = $GLOBALS['DB']->query("DELETE FROM shoes WHERE brand_id = {$this->getId()};");
-       }
-
     }
 ?>
