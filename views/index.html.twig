@@ -3,24 +3,48 @@
     <body>
         <div class="container">
             <h1>Epic Shoe Store</h1>
-            {% if shoes %}
-                <h2>Shoes:</h2>
-                <ul>
-                    {% for shoe in shoes %}
-                        <a href="/shoe/{{ shoe.getId }}"><li>{{ shoe.getName }}</li></a>
-                    {% endfor %}
-                </ul>
-                <form class="" action="/delete_all" method="post">
-                    <button type="submit" class="btn btn-danger">Delete All</button>
-                </form>
-            {% endif %}
-            <form class="form-inline" action="/" method="post">
-                <h4>Add a new Shoe</h4>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="name" placeholder="Name" required>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Brands:</h3>
+                    {% if brands %}
+                        <h4>
+                            {% for brand in brands %}
+                                <a href="/brand/{{ brand.getId }}">{{ brand.getName }}</a>
+                            {% endfor %}
+                        </h4>
+                        <form class="" action="/delete_brands" method="post">
+                            <button type="submit" class="btn btn-danger">Delete All</button>
+                        </form>
+                    {% endif %}
+                    <form class="form-inline" action="/add_brand" method="post">
+                        <h5>Add a new Brand</h5>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="new_brand" placeholder="Name" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">+</button>
+                    </form>
                 </div>
-                <button type="submit" class="btn btn-success">+</button>
-            </form>
+                <div class="col-sm-6">
+                    <h3>Stores:</h3>
+                    {% if stores %}
+                        <h4>
+                            {% for store in stores %}
+                                <a href="/store/{{ store.getId }}">{{ store.getName }}</a>
+                            {% endfor %}
+                        </h4>
+                        <form class="" action="/delete_stores" method="post">
+                            <button type="submit" class="btn btn-danger">Delete All</button>
+                        </form>
+                    {% endif %}
+                    <form class="form-inline" action="/add_store" method="post">
+                        <h5>Add a new Brand</h5>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="new_store" placeholder="Name" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">+</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
 </html>
