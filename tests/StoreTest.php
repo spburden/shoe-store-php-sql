@@ -23,6 +23,7 @@
         protected function tearDown()
         {
             Store::deleteAll();
+            Brand::deleteAll();
         }
 
         function test_getId()
@@ -133,6 +134,25 @@
             $this->assertEquals([$test_store2], $output);
         }
 
+        function test_addBrand()
+        {
+            //Arrange
+            $store_name = "Foot Locker";
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            $brand_name = "Nike";
+            $test_brand = new Brand($brand_name);
+            $test_brand->save();
+
+            //Act
+            $test_store->addBrand($test_brand);
+            $output = $test_store->getBrands();
+
+            //Assert
+            $this->assertEquals([$test_brand], $output);
+
+        }
 
 
     }
