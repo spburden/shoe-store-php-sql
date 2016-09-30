@@ -25,7 +25,7 @@
             Store::deleteAll();
             Brand::deleteAll();
         }
-
+        
         function test_getId()
         {
             //Arrange
@@ -198,6 +198,30 @@
             //Act
             $test_store->deleteBrand($test_brand2);
             $output = $test_store->getBrands();
+
+            //Assert
+            $this->assertEquals([$test_brand1], $output);
+        }
+
+        function test_getBrandsNotCarried()
+        {
+            //Arrange
+            $store_name = "Foot Locker";
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            $brand_name1 = "Nike";
+            $test_brand1 = new Brand($brand_name1);
+            $test_brand1->save();
+
+            $brand_name2 = "Adidas";
+            $test_brand2 = new Brand($brand_name2);
+            $test_brand2->save();
+
+            $test_store->addBrand($test_brand2);
+
+            //Act
+            $output = $test_store->getBrandsNotCarried();
 
             //Assert
             $this->assertEquals([$test_brand1], $output);

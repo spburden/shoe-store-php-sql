@@ -109,20 +109,24 @@
           $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE store_id = {$this->getId()} AND brand_id = {$delete_brand->getId()};");
        }
 
-    //    function getBrandsNotCarried()
-    //    {
-    //        $returned_brands = $GLOBALS['DB']->query("SELECT brands.* FROM stores
-    //            JOIN ;");
-    //        $brands = array();
-    //        foreach($returned_brands as $brand) {
-    //            $id = $brand['id'];
-    //            $name = $brand['name'];
-    //            $new_brand = new Brand($name, $id);
-    //            array_push($brands, $new_brand);
-    //        }
-    //        return $brands;
-    //    }
-    //
+       function getBrandsNotCarried()
+       {
+           $returned_brands = $GLOBALS['DB']->query("SELECT brands.*
+               FROM brands
+               LEFT OUTER JOIN stores_brands
+               ON (brands.id = stores_brands.brand_id)
+               WHERE stores_brands.brand_id IS NULL
+                ;");
+           $brands = array();
+           foreach($returned_brands as $brand) {
+               $id = $brand['id'];
+               $name = $brand['name'];
+               $new_brand = new Brand($name, $id);
+               array_push($brands, $new_brand);
+           }
+           return $brands;
+       }
+
 
     }
 ?>
