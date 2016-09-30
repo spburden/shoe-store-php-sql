@@ -226,7 +226,5 @@
             //Assert
             $this->assertEquals([$test_brand1], $output);
         }
-
-
     }
 ?>
