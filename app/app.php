@@ -58,5 +58,28 @@
           return $app->redirect("/");
     });
 
+    $app->get("/store/{id}", function($id) use ($app) {
+        $store = Store::find($id);
+        $all_brands = Brand::getAll();
+        $store_brands = $store->getBrands();
+        return $app['twig']->render('store.html.twig', array('all_brands' => $all_brands, 'store' => $store, 'store_brands' => $store_brands));
+    })
+    ->bind('store');
+
+    $app->post("/store/{id}/add_brand", function($id) use ($app) {
+        $store = Store::find($id);
+        $brand_id = $_POST['new_store_brands_id'];
+        $brand = Brand::find($brand_id);
+        $store->addBrand($brand);
+        return $app->redirect($app['url_generator']->generate('store', array('id' => $id)));
+    });
+
+    $app->patch("/store/{id}/edit_name", function($id) use ($app) {
+        $store = Store::find($id);
+        $store->update($_POST['edit_name']);
+        return $app->redirect($app['url_generator']->generate('store', array('id' => $id)));
+    });
+
+
     return $app;
 ?>

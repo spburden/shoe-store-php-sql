@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="container">
+            <h1>Epic Shoe Store</h1>
+            <h2>{{ store.getName }}</h2>
+            <div class="row">
+                <div class="col-sm-8">
+                    {% if store_brands %}
+                        {% for brand in store_brands %}
+                            <h4><a href="/brand/{{ brand.getId }}">{{ brand.getName }}</a></h4>
+                        {% endfor %}
+                        <form class="" action="/delete_store_brands" method="post">
+                            <button type="submit" class="btn btn-danger">Delete All</button>
+                        </form>
+                    {% endif %}
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <form class="form-inline" action="/store/{{ store.getId }}/add_brand" method="post">
+                            <h5>Add a new Brand to Store</h5>
+                            <select name="new_store_brands_id" class="form-control">
+                                {% for brand in all_brands %}
+                                    <option value="{{ brand.getId }}">{{ brand.getName }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </form>
+                    </div>
+                    <div class="form-group">
+                        <form class="form-inline" action="/store/{{ store.getId }}/edit_name" method="post">
+                            <h5>Edit Store Name</h5>
+                            <input name="_method" type="hidden" value="patch">
+                            <input type="text" name="edit_name">
+                            <button type="submit" class="btn btn-success">Edit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
