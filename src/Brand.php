@@ -49,7 +49,7 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM brands;");
-            //$GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE brand_id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM stores_brands;");
         }
 
         static function find($search_id)
@@ -93,7 +93,6 @@
            foreach($returned_stores as $store) {
                $id = $store['id'];
                $name = $store['name'];
-               $store_id = $store['store_id'];
                $new_store = new Store($name, $id);
                array_push($stores, $new_store);
            }
@@ -103,6 +102,11 @@
        function deleteStores()
        {
           $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE brand_id = {$this->getId()};");
+       }
+
+       function deleteStore($delete_store)
+       {
+          $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE brand_id = {$this->getId()} AND store_id = {$delete_store->getId()};");
        }
 
     }
