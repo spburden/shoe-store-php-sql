@@ -5,15 +5,12 @@ body {
 h1 {
     color: black;
 }
-
+h5 {
+    text-align: left;
+}
 img {
     margin: 15px;
 }
-
 img, input, #brand_id, #store_id {
     width: 75%;
-}
-
-h5, .homeButton {
-    text-align: left;
 }

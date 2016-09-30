@@ -3,28 +3,23 @@
     {
         private $id;
         private $name;
-
         function __construct ($name, $id = null)
         {
             $this->id = $id;
             $this->name = $name;
         }
-
         function getId()
         {
             return $this->id;
         }
-
         function setName($new_name)
         {
             $this->name = $new_name;
         }
-
         function getName()
         {
             return $this->name;
         }
-
         function save()
         {
             $name = $this->getName();
@@ -32,7 +27,6 @@
             $GLOBALS['DB']->exec("INSERT INTO brands (name) VALUES ('{$name}');");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
-
         static function getAll()
         {
             $returned_brands = $GLOBALS['DB']->query("SELECT * FROM brands;");
@@ -45,13 +39,11 @@
             }
             return $brands;
         }
-
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM brands;");
             $GLOBALS['DB']->exec("DELETE FROM stores_brands;");
         }
-
         static function find($search_id)
         {
             $found_brand = null;
@@ -64,25 +56,21 @@
             }
             return $found_brand;
         }
-
         function update($edit_name)
         {
             $edit_name = ucwords(strtolower($edit_name));
             $GLOBALS['DB']->exec("UPDATE brands SET name = '{$edit_name}' WHERE id = {$this->getId()};");
             $this->setName($edit_name);
         }
-
         function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE store_id = {$this->getId()};");
             $GLOBALS['DB']->exec("DELETE FROM brands WHERE id = {$this->getId()};");
         }
-
         function addStore($new_store)
         {
            $GLOBALS['DB']->exec("INSERT INTO stores_brands (brand_id, store_id) VALUES ({$this->getId()}, {$new_store->getId()});");
         }
-
         function getStores()
         {
            $returned_stores = $GLOBALS['DB']->query("SELECT stores.* FROM brands
@@ -98,17 +86,14 @@
            }
            return $stores;
        }
-
        function deleteStores()
        {
           $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE brand_id = {$this->getId()};");
        }
-
        function deleteStore($delete_store)
        {
           $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE brand_id = {$this->getId()} AND store_id = {$delete_store->getId()};");
        }
-
        function notInStores()
        {
            $all_stores = Store::getAll();
@@ -125,7 +110,5 @@
            }
            return $not_in_stores;
        }
-
-
     }
 ?>
