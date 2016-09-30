@@ -68,7 +68,7 @@
 
     $app->post("/store/{id}/add_brand", function($id) use ($app) {
         $store = Store::find($id);
-        $brand_id = $_POST['new_store_brands_id'];
+        $brand_id = $_POST['brand_id'];
         $brand = Brand::find($brand_id);
         $store->addBrand($brand);
         return $app->redirect($app['url_generator']->generate('store', array('id' => $id)));
@@ -84,6 +84,28 @@
         $store = Store::find($id);
         $store->deleteBrands();
         return $app->redirect($app['url_generator']->generate('store', array('id' => $id)));
+    });
+
+    $app->get("/brand/{id}", function($id) use ($app) {
+        $brand = Brand::find($id);
+        $all_stores = Store::getAll();
+        $brand_stores = $brand->getStores();
+        return $app['twig']->render('brand.html.twig', array('all_stores' => $all_stores, 'brand' => $brand, 'brand_stores' => $brand_stores));
+    })
+    ->bind('brand');
+
+    $app->post("/brand/{id}/add_store", function($id) use ($app) {
+        $brand = Brand::find($id);
+        $store_id = $_POST['store_id'];
+        $store = Store::find($store_id);
+        $brand->addStore($store);
+        return $app->redirect($app['url_generator']->generate('brand', array('id' => $id)));
+    });
+
+    $app->post("/brand/{id}/delete_stores", function($id) use ($app) {
+        $brand = Brand::find($id);
+        $brand->deleteStores();
+        return $app->redirect($app['url_generator']->generate('brand', array('id' => $id)));
     });
 
     return $app;
