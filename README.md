@@ -1,6 +1,6 @@
-# _Shoe Store with PHP and SQL_
+# _Epic Shoe Directory_
 
-#### _This is an application to list out local shoe stores and the brands of shoes that they carry. The user can update and delete a store's name. Also a user can add stores and brands, and be able to modify which stores carry a particular brand, September 30, 2016_
+#### _This is an application which lists out shoe stores and the brands of shoes that they carry or visa-versa. The user can update and delete a store's name. Also a user can add stores and brands, and be able to modify which stores carry a particular brand, September 30, 2016_
 
 #### By _**Stephen Burden**_
 
@@ -8,11 +8,12 @@
 | Behavior | Input Ex. | Output Ex. |
 | --- | --- | --- |
 | Create Store name, to display and record in database  | "Foot Locker"  |  "Foot Locker" |
-| Retrieve a Store's Brands | "Foot Locker"  | "Nike", "Adidas" |
+| Retrieve a Store's Brands | "Foot Locker"  | "Foot Locker: Adidas" |
 | Update Store name in database | "Big 5"  | "Big 5" |
 | Remove Store from database |  Remove "Big 5" from database containing "Big 5" & "Foot Locker" | "Foot Locker" |
-| Retrieve Stores that hold a certain Brand  | "Nike" |  "Foot Locker" |
-| Add Stores that carry a certain Brand | "Big 5" | "Big 5, Foot Locker" |
+| Retrieve Stores that sell a certain Brand  | "Nike" |  "Nike: Foot Locker" |
+| Add Stores that carry a certain Brand | "Big 5" | "Nike: Big 5, Foot Locker" |
+| Add Brands that a Store carries | "Puma" | "Foot Locker: Nike, Puma" |
 
 ## Setup/Installation Requirements
 * _Clone the repository from the link below to your desktop_

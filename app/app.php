@@ -86,6 +86,12 @@
         return $app->redirect($app['url_generator']->generate('store', array('id' => $id)));
     });
 
+    $app->post("/store/{id}/delete", function($id) use ($app) {
+          $store = Store::find($id);
+          $store->delete();
+          return $app->redirect("/");
+    });
+
     $app->get("/brand/{id}", function($id) use ($app) {
         $brand = Brand::find($id);
         $brand_not_in_stores = $brand->notInStores();
