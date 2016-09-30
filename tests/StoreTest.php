@@ -76,7 +76,6 @@
             $name = "Foot Locker";
             $test_store = new Store($name);
 
-
             //Act
             $test_store->save();
             $output = Store::getAll()[0];
@@ -97,6 +96,22 @@
 
             //Assert
             $this->assertEquals($test_store, $output);
+        }
+
+        function test_update()
+        {
+            //Arrange
+            $name = "Foot Locker";
+            $test_store = new Store($name);
+            $test_store->save();
+            $edit_name = "Big 5";
+
+            //Act
+            $test_store->update($edit_name);
+            $output = $test_store->getName();
+
+            //Assert
+            $this->assertEquals($edit_name, $output);
         }
 
 
