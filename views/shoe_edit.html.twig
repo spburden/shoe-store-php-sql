@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="container">
+            <h1>Epic Shoe Store</h1>
+            <h2>Shoe Update Page</h2>
+            <h2>Edit {{ shoe.getName }}'s Information</h2>
+            <form class="form-inline" action="/shoe/{{ shoe.getId }}/edit" method="post">
+                <input name="_method" type="hidden" value="patch">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="shoe_name" placeholder="Name" required>
+                </div>
+                <button type="submit" class="btn btn-success">Edit</button>
+            </form>
+            <form action="/shoe/{{ shoe.getId }}" method="get">
+                <button type="submit" class="btn btn-primary">Back</button>
+            </form>
+        </div>
+    </body>
+</html>

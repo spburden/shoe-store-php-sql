@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="container">
+            <h1>Epic Hair Salon</h1>
+            <h2>Client Page</h2>
+            <h3>{{ client.getName }}</h3>
+            <h4>Update {{ client.getName }}'s Information</h4>
+            <form class="form-inline" action="/client/{{ client.getId }}/edit" method="post">
+                <input name="_method" type="hidden" value="patch">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="client_name" placeholder="Name" required>
+                </div>
+                <button type="submit" class="btn btn-success">Edit</button>
+            </form>
+            <a href="javascript:history.go(-1)"><button type="button" class="btn btn-primary">Back</button></a>
+        </div>
+    </body>
+</html>

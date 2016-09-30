@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="container">
+            <h1>Epic Shoe Store</h1>
+            <a href="/"><button type="button" class="btn btn-primary">Home</button></a>
+                <h2>{{ shoe.getName }}'s Customer:</h2>
+                <form class="form-group" action="/shoe/{{ shoe.getId }}/edit" method="get">
+                    <button type="submit" class="btn btn-primary">Edit {{ shoe.getName }}</button>
+                </form>
+                {% if customers %}
+                    <ul>
+                        {% for customer in customers %}
+                            <a href="/customer/{{ customer.getId }}"><li>{{ customer.getName }}</li></a>
+                        {% endfor %}
+                    </ul>
+                    <form class="" action="/shoe/{{ shoe.getId }}/delete_all" method="post">
+                        <button type="submit" class="btn btn-danger">Delete All</button>
+                    </form>
+                {% endif %}
+            <form class="form-inline" action="/shoe/{{ shoe.getId }}/" method="post">
+                <h4>Add a new Customer</h4>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="customer_name" placeholder="Name" required>
+                    <input type="hidden" name="shoe_id" value="{{ shoe.getId }}">
+                </div>
+                <button type="submit" class="btn btn-success">+</button>
+            </form>
+        </div>
+    </body>
+</html>

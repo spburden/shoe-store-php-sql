@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="container">
+            <h1>Epic Shoe Store</h1>
+            {% if shoes %}
+                <h2>Shoes:</h2>
+                <ul>
+                    {% for shoe in shoes %}
+                        <a href="/shoe/{{ shoe.getId }}"><li>{{ shoe.getName }}</li></a>
+                    {% endfor %}
+                </ul>
+                <form class="" action="/delete_all" method="post">
+                    <button type="submit" class="btn btn-danger">Delete All</button>
+                </form>
+            {% endif %}
+            <form class="form-inline" action="/" method="post">
+                <h4>Add a new Shoe</h4>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="name" placeholder="Name" required>
+                </div>
+                <button type="submit" class="btn btn-success">+</button>
+            </form>
+        </div>
+    </body>
+</html>
