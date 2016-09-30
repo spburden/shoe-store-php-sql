@@ -4,7 +4,7 @@
         private $id;
         private $name;
 
-        function __construct ($id = null, $name)
+        function __construct ($name, $id = null)
         {
             $this->id = $id;
             $this->name = $name;
@@ -40,7 +40,7 @@
             foreach ($returned_stores as $store) {
                 $id = $store['id'];
                 $name = $store['name'];
-                $new_store = new Store($id, $name);
+                $new_store = new Store($name, $id);
                 array_push($stores, $new_store);
             }
             return $stores;
@@ -49,7 +49,7 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM stores;");
-            $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE store_id = {$this->getId()};");
+            //$GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE store_id = {$this->getId()};");
         }
 
         static function find($search_id)
@@ -94,7 +94,7 @@
                $id = $brand['id'];
                $name = $brand['name'];
                $store_id = $brand['store_id'];
-               $new_brand = new Brand($id, $name);
+               $new_brand = new Brand($name, $id);
                array_push($brands, $new_brand);
            }
            return $brands;
