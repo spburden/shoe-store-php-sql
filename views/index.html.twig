@@ -3,8 +3,15 @@
     <body>
         <div class="container">
             <h1>Epic Shoe Directory</h1>
+            <img class="homeButton" src="/img/shoes.jpeg" alt="An image of some shoes" />
             <div class="row">
                 <div class="col-sm-6">
+                    <form class="form-inline" action="/add_brand" method="post">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="new_brand" placeholder="Add a new brand" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">+</button>
+                    </form>
                     <h3>Brands:</h3>
                     {% if brands %}
                         {% for brand in brands %}
@@ -14,15 +21,14 @@
                             <button type="submit" class="btn btn-danger">Delete All</button>
                         </form>
                     {% endif %}
-                    <form class="form-inline" action="/add_brand" method="post">
-                        <h5>Add a new Brand</h5>
+                </div>
+                <div class="col-sm-6">
+                    <form class="form-inline" action="/add_store" method="post">
                         <div class="form-group">
-                            <input class="form-control" type="text" name="new_brand" placeholder="Name" required>
+                            <input class="form-control" type="text" name="new_store" placeholder="Add a new store" required>
                         </div>
                         <button type="submit" class="btn btn-success">+</button>
                     </form>
-                </div>
-                <div class="col-sm-6">
                     <h3>Stores:</h3>
                     {% if stores %}
                         {% for store in stores %}
@@ -32,13 +38,6 @@
                             <button type="submit" class="btn btn-danger">Delete All</button>
                         </form>
                     {% endif %}
-                    <form class="form-inline" action="/add_store" method="post">
-                        <h5>Add a new Store</h5>
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="new_store" placeholder="Name" required>
-                        </div>
-                        <button type="submit" class="btn btn-success">+</button>
-                    </form>
                 </div>
             </div>
         </div>

@@ -2,8 +2,7 @@
 <html>
     <body>
         <div class="container">
-            <a href="/"><button type="submit" class="btn btn-default">Home</button></a>
-            <h1>Epic Shoe Directory</h1>
+            <a href="/"><h1>Epic Shoe Directory</h1></a>
             <h2>{{ store.getName }}</h2>
             <div class="row">
                 <div class="col-sm-8">
@@ -22,7 +21,7 @@
                         <div class="form-group">
                             <form class="form-inline" action="/store/{{ store.getId }}/add_brand" method="post">
                                 <h5>Add a new Brand to Store</h5>
-                                <select name="brand_id" class="form-control">
+                                <select id="brand_id" name="brand_id" class="form-control">
                                     {% for brand in brands_not_carried %}
                                         <option value="{{ brand.getId }}">{{ brand.getName }}</option>
                                     {% endfor %}
