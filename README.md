@@ -32,7 +32,7 @@
 * _SHOW DATABASES;_
 * _USE shoes;_
 * _CREATE TABLE stores (id serial PRIMARY KEY, name VARCHAR (255));_
-* _CREATE TABLE brands (id serial PRIMARY KEY, name VARCHAR (255), brand_id INT);_
+* _CREATE TABLE brands (id serial PRIMARY KEY, name VARCHAR (255));_
 * _CREATE TABLE stores_brands (id serial PRIMARY KEY, store_id INT, brand_id INT);_
 
 ## Link

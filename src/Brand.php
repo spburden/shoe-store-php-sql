@@ -40,7 +40,7 @@
             foreach ($returned_brands as $brand) {
                 $id = $brand['id'];
                 $name = $brand['name'];
-                $new_brand = new Store($name, $id);
+                $new_brand = new Brand($name, $id);
                 array_push($brands, $new_brand);
             }
             return $brands;
@@ -49,13 +49,13 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM brands;");
-            //$GLOBALS['DB']->exec("DELETE FROM brands_brands WHERE brand_id = {$this->getId()};");
+            //$GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE brand_id = {$this->getId()};");
         }
 
         static function find($search_id)
         {
             $found_brand = null;
-            $brands = Store::getAll();
+            $brands = Brand::getAll();
             foreach ($brands as $brand) {
                 $brand_id = $brand->getId();
                 if ($brand_id == $search_id) {
@@ -75,7 +75,7 @@
         function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE store_id = {$this->getId()};");
-            $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM brands WHERE id = {$this->getId()};");
         }
 
         function addStore($new_store)
