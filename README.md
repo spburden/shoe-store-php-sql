@@ -4,6 +4,10 @@
 
 #### By _**Stephen Burden**_
 
+[Click here to view](https://oak-worry.000webhostapp.com/)
+
+<img src="Screenshot.png">
+
 ## Specifications
 | Behavior | Input Ex. | Output Ex. |
 | --- | --- | --- |
